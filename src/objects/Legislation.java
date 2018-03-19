@@ -1,4 +1,4 @@
 package objects;
 
-public class Legislation {
+public class Legislation extends Entity {
 }

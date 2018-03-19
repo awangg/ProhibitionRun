@@ -1,4 +1,4 @@
 package objects;
 
-public class AlCapone {
+public class AlCapone extends Entity {
 }
