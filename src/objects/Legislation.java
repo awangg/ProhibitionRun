@@ -1,6 +1,6 @@
 package objects;
 
-import graphics.*;
+import client.*;
 
 public class Legislation extends Entity {
 

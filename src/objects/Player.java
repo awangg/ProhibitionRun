@@ -1,7 +1,7 @@
 package objects;
 
-import graphics.*;
-import graphics.Panel;
+import client.*;
+import client.Panel;
 import tools.Point;
 import java.awt.*;
 

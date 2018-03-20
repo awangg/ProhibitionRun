@@ -1,5 +1,4 @@
-package graphics;
-import graphics.*;
+package client;
 
 import javax.swing.*;
 

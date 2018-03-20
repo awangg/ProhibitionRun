@@ -1,4 +1,4 @@
-package graphics;
+package client;
 
 import objects.*;
 
@@ -19,22 +19,11 @@ public class Panel extends JPanel {
     public static int groundHeight = 150;
     private boolean[] keys = new boolean[512];
 
+    private boolean drawOverlay = false;
+
     public Panel() {
         entities = new ArrayList<>();
         p = new Player(25, (Main.HEIGHT - groundHeight) - 75, 75, 75);
-
-        gameTimer = new Timer(1000/30, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                playerControls();
-                enemyControls();
-                if(!p.isGrounded()) {
-                    p.move("null");
-                }
-                repaint();
-            }
-        });
-        gameTimer.start();
 
         spawnTimer = new Timer(2000, new ActionListener() {
             @Override
@@ -43,6 +32,26 @@ public class Panel extends JPanel {
             }
         });
         spawnTimer.start();
+
+        gameTimer = new Timer(1000/30, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                playerControls();
+                if(!p.isGrounded()) {
+                    p.move("null");
+                }
+
+                enemyControls();
+                if(checkCollisions()) {
+                    // System.out.println("Collision Detected");
+                    pauseTimers();
+                    drawOverlay = true;
+                }
+
+                repaint();
+            }
+        });
+        gameTimer.start();
 
         addKeyListener(new KeyListener() {
             @Override
@@ -83,6 +92,20 @@ public class Panel extends JPanel {
                 i--;
             }
         }
+    }
+
+    public void pauseTimers() {
+        gameTimer.stop();
+        spawnTimer.stop();
+    }
+
+    public boolean checkCollisions() {
+        for(Entity e : entities) {
+            if(p.isCollidingWith((e))) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void paintComponent(Graphics g) {
