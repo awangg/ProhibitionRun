@@ -22,6 +22,8 @@ public class Panel extends JPanel {
     private boolean drawOverlay = false, paused = false, caponeSpawned = false;
     private long caponeSpawnTime, currentTime, startTime;
 
+    private int score;
+
     public Panel() {
         entities = new ArrayList<>();
         entities.add(new Backdrop(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 200, Main.HEIGHT - groundHeight - 600, 75, 200, 400, 600));
@@ -35,8 +37,12 @@ public class Panel extends JPanel {
         spawnTimer = new Timer(2000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                currentTime = System.nanoTime()/1000000;
-                entities.add(new Legislation(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 60, 60, 60));
+//                entities.add(new Legislation(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 60, 60, 60));
+
+                if(Math.random() >= .5) {
+                    entities.add(new Keg(Main.WIDTH + 50, Main.HEIGHT - groundHeight - 55, 60, 52));
+                }
+
                 if(currentTime - startTime >= caponeSpawnTime && !caponeSpawned) {
                     entities.add(new AlCapone(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 120, 70, 120));
                     caponeSpawned = true;
@@ -49,6 +55,7 @@ public class Panel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(!paused) {
+                    currentTime = System.nanoTime()/1000000;
                     playerControls();
                     if (!p.isGrounded()) {
                         p.move("null");
@@ -135,13 +142,32 @@ public class Panel extends JPanel {
     public boolean checkCollisions() {
         for(int i = 0; i < entities.size(); i++) {
             Entity e = entities.get(i);
-            if(p.isCollidingWith((e)) && !(e instanceof Backdrop)) {
-                entities.remove(e);
-                i--;
-                return true;
+            if(p.isCollidingWith(e) && !(e instanceof Backdrop)) {
+                if (e instanceof Keg) {
+                    score += 50;
+                    entities.remove(e);
+                    i--;
+                    return false;
+                }else {
+                    score -= 10;
+                    entities.remove(e);
+                    i--;
+                    return true;
+                }
             }
         }
         return false;
+    }
+
+    public String determineTime(long givenTime) {
+        long totalSeconds = givenTime / 1000;
+        long minutes = totalSeconds / 60;
+        long seconds = totalSeconds % 60;
+        if(seconds < 10) {
+            return minutes + ":0" + seconds;
+        }else {
+            return minutes + ":" + seconds;
+        }
     }
 
     public void paintComponent(Graphics g) {
@@ -160,6 +186,13 @@ public class Panel extends JPanel {
         for(Entity e : entities) {
             e.display(g2);
         }
+
+        //Scoreboard
+        g2.setColor(Color.WHITE);
+        String scoreText = "Score: " + score;
+        g2.drawString(scoreText, Main.WIDTH - 10 - g2.getFontMetrics().stringWidth(scoreText), 25);
+        String timeText = "Time Elapsed: " + determineTime(currentTime - startTime);
+        g2.drawString(timeText, Main.WIDTH - 10 - g2.getFontMetrics().stringWidth(timeText), 50);
 
         // Player
         p.display(g2);

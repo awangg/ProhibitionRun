@@ -18,18 +18,18 @@ public class Entity {
 
     public Point[] getPoints(String code) {
         if(code.equals("top")) {
-            return new Point[]{new Point(x+2, y), new Point(x+w/2, y), new Point(x+w-2, y)};
+            return new Point[]{new Point(x+5, y), new Point(x+w/2, y), new Point(x+w-5, y)};
         }else if(code.equals("bottom")) {
-            return new Point[]{new Point(x+2, y+h), new Point(x+w/2, y+h), new Point(x+w-2, y+h)};
+            return new Point[]{new Point(x+5, y+h), new Point(x+w/2, y+h), new Point(x+w-5, y+h)};
         }else if(code.equals("left")) {
-            return new Point[]{new Point(x, y+2), new Point(x, y+h/2), new Point(x, y+h-2)};
+            return new Point[]{new Point(x, y+5), new Point(x, y+h/2), new Point(x, y+h-5)};
         }else if(code.equals("right")) {
-            return new Point[]{new Point(x+w, y+2), new Point(x+w, y+h/2), new Point(x+w, y+h-2)};
+            return new Point[]{new Point(x+w, y+5), new Point(x+w, y+h/2), new Point(x+w, y+h-5)};
         }else if(code.equals("all")) {
-            return new Point[]{new Point(x+2, y), new Point(x+w/2, y), new Point(x+w-2, y),
-                    new Point(x+2, y+h), new Point(x+w/2, y+h), new Point(x+w-2, y+h),
-                    new Point(x, y+2), new Point(x, y+h/2), new Point(x, y+h-2),
-                    new Point(x+w, y+2), new Point(x+w, y+h/2), new Point(x+w, y+h-2)};
+            return new Point[]{new Point(x+5, y), new Point(x+w/2, y), new Point(x+w-5, y),
+                    new Point(x+5, y+h), new Point(x+w/2, y+h), new Point(x+w-5, y+h),
+                    new Point(x, y+5), new Point(x, y+h/2), new Point(x, y+h-5),
+                    new Point(x+w, y+5), new Point(x+w, y+h/2), new Point(x+w, y+h-5)};
         }
         return null;
     }
