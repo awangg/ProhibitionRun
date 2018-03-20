@@ -2,26 +2,26 @@ package objects;
 
 import graphics.*;
 import graphics.Panel;
-
+import tools.Point;
 import java.awt.*;
 
 public class Player extends Entity {
 
-    private int speed = 10, vy = 0;
+    private double speed = 10, vy = 0;
     private boolean grounded = true;
 
-    public Player(int x, int y, int w, int h) {
+    public Player(double x, double y, int w, int h) {
         super(x, y, w, h);
     }
 
     public void move(String code) {
         setPosition(getPosition().x, getPosition().y + vy);
         if(!grounded) {
-            vy = Math.min(vy+1, 1);
+            vy = Math.min(vy + 1, 20);
         }
 
         if(vy >= 0) {
-            if(getPosition().y >= Panel.groundHeight) {
+            if(getPosition().y + getHeight() >= Main.HEIGHT - Panel.groundHeight) {
                 vy = 0;
                 grounded = true;
                 setPosition(getPosition().x, Main.HEIGHT - Panel.groundHeight - getHeight());
@@ -40,7 +40,22 @@ public class Player extends Entity {
         }
     }
 
+    public boolean isCollidingWith(Entity other) {
+        for(Point p : getPoints("all")) {
+            if(other.isColliding(p)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean isGrounded() {
         return grounded;
+    }
+
+    @Override
+    public void display(Graphics2D g2) {
+        g2.setColor(Color.GREEN);
+        g2.fillRect((int)getPosition().x, (int)getPosition().y, getWidth(), getHeight());
     }
 }

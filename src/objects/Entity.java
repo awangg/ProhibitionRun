@@ -1,11 +1,12 @@
 package objects;
 
 import java.awt.*;
-import java.util.*;
+import tools.Point;
 
 public class Entity {
-    private int x, y, w, h;
-    public Entity(int x, int y, int w, int h) {
+    private double x, y;
+    private int w, h;
+    public Entity(double x, double y, int w, int h) {
         this.x = x;
         this.y = y;
         this.w = w;
@@ -21,22 +22,25 @@ public class Entity {
             return new Point[]{new Point(x, y+2), new Point(x, y+h/2), new Point(x, y+h-2)};
         }else if(code.equals("right")) {
             return new Point[]{new Point(x+w, y+2), new Point(x+w, y+h/2), new Point(x+w, y+h-2)};
+        }else if(code.equals("all")) {
+            return new Point[]{new Point(x+2, y), new Point(x+w/2, y), new Point(x+w-2, y),
+                    new Point(x+2, y+h), new Point(x+w/2, y+h), new Point(x+w-2, y+h),
+                    new Point(x, y+2), new Point(x, y+h/2), new Point(x, y+h-2),
+                    new Point(x+w, y+2), new Point(x+w, y+h/2), new Point(x+w, y+h-2)};
         }
         return null;
     }
 
-    public boolean isColliding(Point[] other) {
-        for(Point p : other) {
-            if(p.x > x && p.x < x+w) {
-                if(p.y > y && p.y < y+h) {
-                    return true;
-                }
+    public boolean isColliding(Point p) {
+        if(p.x > x && p.x < x+w) {
+            if(p.y > y && p.y < y+h) {
+                return true;
             }
         }
         return false;
     }
 
-    public void setPosition(int x, int y) {
+    public void setPosition(double x, double y) {
         this.x = x;
         this.y = y;
     }
@@ -56,6 +60,6 @@ public class Entity {
     // Default display method; child classes will override
     public void display(Graphics2D g2) {
         g2.setColor(Color.RED);
-        g2.fillRect(x, y, w, h);
+        g2.fillRect((int)x, (int)y, w, h);
     }
 }
