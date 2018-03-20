@@ -24,7 +24,7 @@ public class Panel extends JPanel {
 
     public Panel() {
         entities = new ArrayList<>();
-        entities.add(new Streetlight(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 275, 5, 275));
+        entities.add(new Backdrop(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 200, Main.HEIGHT - groundHeight - 600, 75, 200, 400, 600));
 
         p = new Player(25, (Main.HEIGHT - groundHeight) - 75, 75, 75);
 
@@ -133,7 +133,7 @@ public class Panel extends JPanel {
     public boolean checkCollisions() {
         for(int i = 0; i < entities.size(); i++) {
             Entity e = entities.get(i);
-            if(p.isCollidingWith((e)) && !(e instanceof Streetlight)) {
+            if(p.isCollidingWith((e)) && !(e instanceof Backdrop)) {
                 entities.remove(e);
                 i--;
                 return true;
