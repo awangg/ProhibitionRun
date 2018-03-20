@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class Panel extends JPanel {
 
-    private Timer t;
+    private Timer gameTimer, spawnTimer;
     private Player p;
     private ArrayList<Entity> entities;
 
@@ -23,17 +23,26 @@ public class Panel extends JPanel {
         entities = new ArrayList<>();
         p = new Player(25, (Main.HEIGHT - groundHeight) - 75, 75, 75);
 
-        t = new Timer(1000/30, new ActionListener() {
+        gameTimer = new Timer(1000/30, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controls();
+                playerControls();
+                enemyControls();
                 if(!p.isGrounded()) {
                     p.move("null");
                 }
                 repaint();
             }
         });
-        t.start();
+        gameTimer.start();
+
+        spawnTimer = new Timer(2000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                entities.add(new Legislation(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 50, 50, 50));
+            }
+        });
+        spawnTimer.start();
 
         addKeyListener(new KeyListener() {
             @Override
@@ -53,7 +62,7 @@ public class Panel extends JPanel {
         });
     }
 
-    public void controls() {
+    public void playerControls() {
         if(keys[KeyEvent.VK_W] || keys[KeyEvent.VK_UP]) {
             p.move("jump");
         }
@@ -62,6 +71,17 @@ public class Panel extends JPanel {
         }
         if(keys[KeyEvent.VK_A]) {
             p.move("backward");
+        }
+    }
+
+    public void enemyControls() {
+        for(int i = 0; i < entities.size(); i++) {
+            Entity e = entities.get(i);
+            e.move();
+            if(e.isOffScreen()) {
+                entities.remove(e);
+                i--;
+            }
         }
     }
 
@@ -75,5 +95,10 @@ public class Panel extends JPanel {
 
         // Player
         p.display(g2);
+
+        // Entities
+        for(Entity e : entities) {
+            e.display(g2);
+        }
     }
 }

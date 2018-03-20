@@ -9,6 +9,7 @@ public class Player extends Entity {
 
     private double speed = 10, vy = 0;
     private boolean grounded = true;
+    private double jumpHeight = 20;
 
     public Player(double x, double y, int w, int h) {
         super(x, y, w, h);
@@ -34,7 +35,7 @@ public class Player extends Entity {
             setPosition(getPosition().x - speed, getPosition().y);
         }else if(code.equals("jump") && grounded) {
             if(vy >= 0) {
-                vy -= 13;
+                vy -= jumpHeight;
                 grounded = false;
             }
         }

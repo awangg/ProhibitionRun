@@ -13,6 +13,9 @@ public class Entity {
         this.h = h;
     }
 
+    // Default move constructor; overridden by subclasses
+    public void move(){}
+
     public Point[] getPoints(String code) {
         if(code.equals("top")) {
             return new Point[]{new Point(x+2, y), new Point(x+w/2, y), new Point(x+w-2, y)};
@@ -40,6 +43,13 @@ public class Entity {
         return false;
     }
 
+    public boolean isOffScreen() {
+        if(getPosition().x + getWidth() < 0) {
+            return true;
+        }
+        return false;
+    }
+
     public void setPosition(double x, double y) {
         this.x = x;
         this.y = y;
@@ -57,7 +67,7 @@ public class Entity {
         return h;
     }
 
-    // Default display method; child classes will override
+    // Default display method; overridden by subclasses
     public void display(Graphics2D g2) {
         g2.setColor(Color.RED);
         g2.fillRect((int)x, (int)y, w, h);
