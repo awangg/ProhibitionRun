@@ -4,11 +4,14 @@ import graphics.*;
 import javax.swing.*;
 
 public class Main {
+
     private static Panel p;
+    public static final int WIDTH = 800, HEIGHT = 600;
+
     public static void main(String[] args) {
         JFrame frame = new JFrame("Prohibition Run");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setSize(800,600);
+        frame.setSize(WIDTH, HEIGHT);
 
         p = new Panel();
         frame.add(p);
