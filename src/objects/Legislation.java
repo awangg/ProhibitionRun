@@ -1,17 +1,28 @@
 package objects;
 
-import client.*;
+import client.Panel;
+import client.Main;
+import java.awt.*;
+import java.awt.image.*;
+import javax.imageio.*;
+import java.io.*;
 
 public class Legislation extends Entity {
 
     private double speed, initialJumpSpeed, vy = 0;
     private boolean grounded;
+    private BufferedImage sprite;
 
     public Legislation(int x, int y, int w, int h) {
         super(x, y, w, h);
         speed = (int)(Math.random() * 10) + 10;
         initialJumpSpeed = (int)(Math.random() * 15) + 8;
         grounded = false;
+        try {
+            sprite = ImageIO.read(new File("res/legislation.png"));
+        } catch (Exception e) {
+            System.out.println("Image not found");
+        }
     }
 
     @Override
@@ -36,6 +47,10 @@ public class Legislation extends Entity {
             }
         }
 
+    }
+
+    public void display(Graphics2D g2) {
+        g2.drawImage(sprite, (int)getPosition().x, (int)getPosition().y, getWidth(), getHeight(), null);
     }
 
 }

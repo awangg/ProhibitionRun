@@ -24,7 +24,10 @@ public class Panel extends JPanel {
 
     public Panel() {
         entities = new ArrayList<>();
+        entities.add(new Streetlight(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 275, 5, 275));
+
         p = new Player(25, (Main.HEIGHT - groundHeight) - 75, 75, 75);
+
         caponeSpawnTime = (long)(Math.random() * 20000) + 20000;
         startTime = System.nanoTime()/1000000;
 
@@ -32,7 +35,7 @@ public class Panel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 currentTime = System.nanoTime()/1000000;
-                entities.add(new Legislation(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 50, 50, 50));
+                entities.add(new Legislation(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 60, 60, 60));
                 if(currentTime - startTime >= caponeSpawnTime && !caponeSpawned) {
                     entities.add(new AlCapone(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 75, 50, 75));
                     caponeSpawned = true;
@@ -130,7 +133,7 @@ public class Panel extends JPanel {
     public boolean checkCollisions() {
         for(int i = 0; i < entities.size(); i++) {
             Entity e = entities.get(i);
-            if(p.isCollidingWith((e))) {
+            if(p.isCollidingWith((e)) && !(e instanceof Streetlight)) {
                 entities.remove(e);
                 i--;
                 return true;
@@ -143,16 +146,20 @@ public class Panel extends JPanel {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
+        //Background
+        g2.setColor(new Color(0, 0, 102));
+        g2.fillRect(0, 0, Main.WIDTH, Main.HEIGHT);
+
         // Ground
         g2.setColor(new Color(132, 63, 2));
         g2.fillRect(0, Main.HEIGHT - groundHeight, Main.WIDTH, groundHeight);
-
-        // Player
-        p.display(g2);
 
         // Entities
         for(Entity e : entities) {
             e.display(g2);
         }
+
+        // Player
+        p.display(g2);
     }
 }
