@@ -19,7 +19,7 @@ public class AlCapone extends Entity {
         animationStates = new BufferedImage[6];
         for(int i = 1; i <= 6; i++) {
             try {
-                animationStates[i - 1] = ImageIO.read(new File("res/gangster/gangster" + i + ".png"));
+                animationStates[i-1] = ImageIO.read(new File("res/gangster/gangster" + i + ".png"));
             } catch (Exception e) {
                 System.out.println("Sprite not found");
             }

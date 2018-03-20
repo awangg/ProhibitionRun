@@ -26,7 +26,7 @@ public class Panel extends JPanel {
         entities = new ArrayList<>();
         entities.add(new Backdrop(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 200, Main.HEIGHT - groundHeight - 600, 75, 200, 400, 600));
 
-        p = new Player(25, (Main.HEIGHT - groundHeight) - 75, 75, 75);
+        p = new Player(25, (Main.HEIGHT - groundHeight) - 120, 70, 120);
 
 //        caponeSpawnTime = (long)(Math.random() * 20000) + 20000;
         caponeSpawnTime = (long)(Math.random() * 5000) + 1000;
@@ -53,6 +53,7 @@ public class Panel extends JPanel {
                     if (!p.isGrounded()) {
                         p.move("null");
                     }
+                    p.animate();
 
                     enemyControls();
                     if (checkCollisions()) {

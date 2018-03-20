@@ -1,9 +1,13 @@
 package objects;
 
 import client.*;
+import animation.*;
 import client.Panel;
 import tools.Point;
+import java.awt.image.*;
 import java.awt.*;
+import javax.imageio.*;
+import java.io.*;
 
 public class Player extends Entity {
 
@@ -11,8 +15,26 @@ public class Player extends Entity {
     private boolean grounded = true;
     private double jumpHeight = 20;
 
+    private BufferedImage[] animationStates;
+    private Animation animate;
+
     public Player(double x, double y, int w, int h) {
         super(x, y, w, h);
+
+        animationStates = new BufferedImage[11];
+        for(int i = 1; i <= 11; i++) {
+            try {
+                animationStates[i-1] = ImageIO.read(new File("res/player/player" + i + ".png"));
+            } catch (Exception e) {
+                System.out.println("Sprite not found");
+            }
+        }
+        animate = new Animation(animationStates, 2);
+        animate.start();
+    }
+
+    public void animate() {
+        animate.update();
     }
 
     public void move(String code) {
@@ -52,8 +74,11 @@ public class Player extends Entity {
 
     @Override
     public void display(Graphics2D g2) {
+        /*
         g2.setColor(Color.GREEN);
         g2.fillRect((int)getPosition().x, (int)getPosition().y, getWidth(), getHeight());
+        */
+        g2.drawImage(animate.getSprite(), (int)getPosition().x, (int)getPosition().y, getWidth(), getHeight(), null);
     }
 
     public boolean isGrounded() {
