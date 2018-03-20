@@ -14,6 +14,7 @@ public class Legislation extends Entity {
         grounded = false;
     }
 
+    @Override
     public void move() {
         setPosition(getPosition().x - speed, getPosition().y + vy);
         if(!grounded) {

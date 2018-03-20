@@ -50,13 +50,17 @@ public class Player extends Entity {
         return false;
     }
 
-    public boolean isGrounded() {
-        return grounded;
-    }
-
     @Override
     public void display(Graphics2D g2) {
         g2.setColor(Color.GREEN);
         g2.fillRect((int)getPosition().x, (int)getPosition().y, getWidth(), getHeight());
+    }
+
+    public boolean isGrounded() {
+        return grounded;
+    }
+
+    public double getSpeed() {
+        return speed;
     }
 }

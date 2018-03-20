@@ -19,16 +19,24 @@ public class Panel extends JPanel {
     public static int groundHeight = 150;
     private boolean[] keys = new boolean[512];
 
-    private boolean drawOverlay = false;
+    private boolean drawOverlay = false, paused = false, caponeSpawned = false;
+    private long caponeSpawnTime, currentTime, startTime;
 
     public Panel() {
         entities = new ArrayList<>();
         p = new Player(25, (Main.HEIGHT - groundHeight) - 75, 75, 75);
+        caponeSpawnTime = (long)(Math.random() * 20000) + 20000;
+        startTime = System.nanoTime()/1000000;
 
         spawnTimer = new Timer(2000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                currentTime = System.nanoTime()/1000000;
                 entities.add(new Legislation(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 50, 50, 50));
+                if(currentTime - startTime >= caponeSpawnTime && !caponeSpawned) {
+                    entities.add(new AlCapone(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 75, 50, 75));
+                    caponeSpawned = true;
+                }
             }
         });
         spawnTimer.start();
@@ -36,18 +44,21 @@ public class Panel extends JPanel {
         gameTimer = new Timer(1000/30, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                playerControls();
-                if(!p.isGrounded()) {
-                    p.move("null");
-                }
+                if(!paused) {
+                    playerControls();
+                    if (!p.isGrounded()) {
+                        p.move("null");
+                    }
 
-                enemyControls();
-                if(checkCollisions()) {
-                    // System.out.println("Collision Detected");
-                    pauseTimers();
-                    drawOverlay = true;
+                    enemyControls();
+                    if (checkCollisions()) {
+                        // System.out.println("Collision Detected");
+                        drawOverlay = true;
+                        pauseTimers();
+                    }
+                }else {
+                    checkResume();
                 }
-
                 repaint();
             }
         });
@@ -77,9 +88,18 @@ public class Panel extends JPanel {
         }
         if(keys[KeyEvent.VK_D]) {
             p.move("forward");
+            if(p.getPosition().x + p.getWidth() >= Main.WIDTH) {
+                p.setPosition(Main.WIDTH - p.getWidth(), p.getPosition().y);
+            }
         }
         if(keys[KeyEvent.VK_A]) {
             p.move("backward");
+            if(p.getPosition().x <= 0) {
+                p.setPosition(0, p.getPosition().y);
+            }
+        }
+        if(keys[KeyEvent.VK_ESCAPE]) {
+            System.exit(0);
         }
     }
 
@@ -95,13 +115,24 @@ public class Panel extends JPanel {
     }
 
     public void pauseTimers() {
-        gameTimer.stop();
+        paused = true;
         spawnTimer.stop();
     }
 
+    public void checkResume() {
+        if(keys[KeyEvent.VK_SPACE]) {
+            paused = false;
+            spawnTimer.start();
+            keys[KeyEvent.VK_SPACE] = false;
+        }
+    }
+
     public boolean checkCollisions() {
-        for(Entity e : entities) {
+        for(int i = 0; i < entities.size(); i++) {
+            Entity e = entities.get(i);
             if(p.isCollidingWith((e))) {
+                entities.remove(e);
+                i--;
                 return true;
             }
         }
