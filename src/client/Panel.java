@@ -28,7 +28,8 @@ public class Panel extends JPanel {
 
         p = new Player(25, (Main.HEIGHT - groundHeight) - 75, 75, 75);
 
-        caponeSpawnTime = (long)(Math.random() * 20000) + 20000;
+//        caponeSpawnTime = (long)(Math.random() * 20000) + 20000;
+        caponeSpawnTime = (long)(Math.random() * 5000) + 1000;
         startTime = System.nanoTime()/1000000;
 
         spawnTimer = new Timer(2000, new ActionListener() {
@@ -37,7 +38,7 @@ public class Panel extends JPanel {
                 currentTime = System.nanoTime()/1000000;
                 entities.add(new Legislation(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 60, 60, 60));
                 if(currentTime - startTime >= caponeSpawnTime && !caponeSpawned) {
-                    entities.add(new AlCapone(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 75, 50, 75));
+                    entities.add(new AlCapone(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 120, 70, 120));
                     caponeSpawned = true;
                 }
             }
