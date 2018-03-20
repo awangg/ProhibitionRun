@@ -37,8 +37,4 @@ public class Legislation extends Entity {
 
     }
 
-    public boolean isGrounded() {
-        return grounded;
-    }
-
 }
