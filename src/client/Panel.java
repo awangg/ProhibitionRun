@@ -20,26 +20,25 @@ public class Panel extends JPanel {
     private boolean[] keys = new boolean[512];
 
     private boolean drawOverlay = false, paused = false, caponeSpawned = false;
-    private long caponeSpawnTime, currentTime, startTime;
-
-    private int score;
+    private int caponeSpawnTime, currentTime, startTime, score, delay;
 
     public Panel() {
         entities = new ArrayList<>();
         entities.add(new Backdrop(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 200, Main.HEIGHT - groundHeight - 600, 75, 200, 400, 600));
+        delay = 2000;
 
         p = new Player(25, (Main.HEIGHT - groundHeight) - 120, 70, 120);
 
 //        caponeSpawnTime = (long)(Math.random() * 20000) + 20000;
-        caponeSpawnTime = (long)(Math.random() * 5000) + 1000;
-        startTime = System.nanoTime()/1000000;
+        caponeSpawnTime = (int)((Math.random() * 5000) + 1000);
+        startTime = (int)(System.nanoTime()/1000000);
 
-        spawnTimer = new Timer(2000, new ActionListener() {
+        spawnTimer = new Timer(delay, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                entities.add(new Legislation(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 60, 60, 60));
+                entities.add(new Legislation(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 60, 60, 60));
 
-                if(Math.random() >= .5) {
+                if(Math.random() >= .75 && (currentTime - startTime % 2000 == 0)) {
                     entities.add(new Keg(Main.WIDTH + 50, Main.HEIGHT - groundHeight - 55, 60, 52));
                 }
 
@@ -47,6 +46,8 @@ public class Panel extends JPanel {
                     entities.add(new AlCapone(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 120, 70, 120));
                     caponeSpawned = true;
                 }
+
+//                System.out.println(spawnTimer.getDelay());
             }
         });
         spawnTimer.start();
@@ -55,7 +56,7 @@ public class Panel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(!paused) {
-                    currentTime = System.nanoTime()/1000000;
+                    currentTime = (int)(System.nanoTime()/1000000);
                     playerControls();
                     if (!p.isGrounded()) {
                         p.move("null");
@@ -63,6 +64,9 @@ public class Panel extends JPanel {
                     p.animate();
 
                     enemyControls();
+
+                    setSpawnDelay(currentTime - startTime);
+
                     if (checkCollisions()) {
                         // System.out.println("Collision Detected");
                         drawOverlay = true;
@@ -167,6 +171,13 @@ public class Panel extends JPanel {
             return minutes + ":0" + seconds;
         }else {
             return minutes + ":" + seconds;
+        }
+    }
+
+    public void setSpawnDelay(int time) {
+        int multiplier = (time/1000) / 30;
+        if(spawnTimer.getDelay() > 500) {
+            spawnTimer.setDelay(delay - (150 * multiplier));
         }
     }
 
