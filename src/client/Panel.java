@@ -12,6 +12,11 @@ import java.util.ArrayList;
 
 public class Panel extends JPanel {
 
+    private double state = 2;
+    /*
+    0 - loading credits; 1 - start screen; 1.5 - starting animation; 2 - playing; 3 - game over; 4 - victory;
+    */
+
     private Timer gameTimer, spawnTimer;
     private Player p;
     private ArrayList<Entity> entities;
@@ -36,15 +41,17 @@ public class Panel extends JPanel {
         spawnTimer = new Timer(delay, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                entities.add(new Legislation(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 60, 60, 60));
+                if(state == 2) {
+                    entities.add(new Legislation(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 60, 60, 60));
 
-                if(Math.random() >= .75 && (currentTime - startTime % 2000 == 0)) {
-                    entities.add(new Keg(Main.WIDTH + 50, Main.HEIGHT - groundHeight - 55, 60, 52));
-                }
+                    if (Math.random() >= .25) {
+                        entities.add(new Keg(Main.WIDTH + 50, Main.HEIGHT - groundHeight - 55, 60, 52));
+                    }
 
-                if(currentTime - startTime >= caponeSpawnTime && !caponeSpawned) {
-                    entities.add(new AlCapone(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 120, 70, 120));
-                    caponeSpawned = true;
+                    if (currentTime - startTime >= caponeSpawnTime && !caponeSpawned) {
+                        entities.add(new AlCapone(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 120, 70, 120));
+                        caponeSpawned = true;
+                    }
                 }
 
 //                System.out.println(spawnTimer.getDelay());
@@ -55,7 +62,7 @@ public class Panel extends JPanel {
         gameTimer = new Timer(1000/30, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(!paused) {
+                if(state == 2 && !paused) {
                     currentTime = (int)(System.nanoTime()/1000000);
                     playerControls();
                     if (!p.isGrounded()) {
@@ -72,7 +79,7 @@ public class Panel extends JPanel {
                         drawOverlay = true;
                         pauseTimers();
                     }
-                }else {
+                }else if(state == 2 && paused) {
                     checkResume();
                 }
                 repaint();
@@ -185,27 +192,29 @@ public class Panel extends JPanel {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        //Background
-        g2.setColor(new Color(0, 0, 102));
-        g2.fillRect(0, 0, Main.WIDTH, Main.HEIGHT);
+        if(state == 2) {
+            //Background
+            g2.setColor(new Color(0, 0, 102));
+            g2.fillRect(0, 0, Main.WIDTH, Main.HEIGHT);
 
-        // Ground
-        g2.setColor(new Color(132, 63, 2));
-        g2.fillRect(0, Main.HEIGHT - groundHeight, Main.WIDTH, groundHeight);
+            // Ground
+            g2.setColor(new Color(132, 63, 2));
+            g2.fillRect(0, Main.HEIGHT - groundHeight, Main.WIDTH, groundHeight);
 
-        // Entities
-        for(Entity e : entities) {
-            e.display(g2);
+            // Entities
+            for (Entity e : entities) {
+                e.display(g2);
+            }
+
+            //Scoreboard
+            g2.setColor(Color.WHITE);
+            String scoreText = "Score: " + score;
+            g2.drawString(scoreText, Main.WIDTH - 10 - g2.getFontMetrics().stringWidth(scoreText), 25);
+            String timeText = "Time Elapsed: " + determineTime(currentTime - startTime);
+            g2.drawString(timeText, Main.WIDTH - 10 - g2.getFontMetrics().stringWidth(timeText), 50);
+
+            // Player
+            p.display(g2);
         }
-
-        //Scoreboard
-        g2.setColor(Color.WHITE);
-        String scoreText = "Score: " + score;
-        g2.drawString(scoreText, Main.WIDTH - 10 - g2.getFontMetrics().stringWidth(scoreText), 25);
-        String timeText = "Time Elapsed: " + determineTime(currentTime - startTime);
-        g2.drawString(timeText, Main.WIDTH - 10 - g2.getFontMetrics().stringWidth(timeText), 50);
-
-        // Player
-        p.display(g2);
     }
 }
