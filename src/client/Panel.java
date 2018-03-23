@@ -9,10 +9,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.awt.image.*;
+import java.io.*;
+import javax.imageio.*;
 
 public class Panel extends JPanel {
 
-    private double state = 2;
+    private double state = 0;
     /*
     0 - loading credits; 1 - start screen; 1.5 - starting animation; 2 - playing; 3 - game over; 4 - victory;
     */
@@ -27,10 +30,15 @@ public class Panel extends JPanel {
     private boolean drawOverlay = false, paused = false, caponeSpawned = false;
     private int caponeSpawnTime, currentTime, startTime, score, delay;
 
+    private BufferedImage communismLeft, communismRight, studio;
+    private int initLeft = 100, initRight = 400, frameSpeed = 2, opacity = 0;
+
     public Panel() {
         entities = new ArrayList<>();
         entities.add(new Backdrop(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 200, Main.HEIGHT - groundHeight - 600, 75, 200, 400, 600));
         delay = 2000;
+
+        initLoadingImages();
 
         p = new Player(25, (Main.HEIGHT - groundHeight) - 120, 70, 120);
 
@@ -103,6 +111,16 @@ public class Panel extends JPanel {
                 keys[e.getKeyCode()] = false;
             }
         });
+    }
+
+    public void initLoadingImages() {
+        try {
+            communismLeft = ImageIO.read(new File("res/communismLeft.png"));
+            communismRight = ImageIO.read(new File("res/communismRight.png"));
+            studio = ImageIO.read(new File("res/studio.png"));
+        } catch (Exception e) {
+            System.out.println("Image not found");
+        }
     }
 
     public void playerControls() {
@@ -192,7 +210,28 @@ public class Panel extends JPanel {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        if(state == 2) {
+        if(state == 0) {
+            g2.drawImage(studio, 0, 0, Main.WIDTH, Main.HEIGHT, null);
+            g2.drawImage(communismLeft, initLeft, 0, null);
+            g2.drawImage(communismRight, initRight, 0, null);
+
+            if(initLeft > -100) {
+                initLeft -= frameSpeed;
+            }
+            if(initRight + communismRight.getWidth() < Main.WIDTH + 100) {
+                initRight += frameSpeed;
+            }
+
+            if((initLeft <= -100 || initRight >= Main.WIDTH + 100) && opacity < 252) {
+                opacity += 4;
+            }
+            g2.setColor(new Color(0, 0, 0, opacity));
+            g2.fillRect(0, 0, Main.WIDTH, Main.HEIGHT);
+
+            if(opacity >= 252) {
+                state = 2;
+            }
+        } else if(state == 2) {
             //Background
             g2.setColor(new Color(0, 0, 102));
             g2.fillRect(0, 0, Main.WIDTH, Main.HEIGHT);
