@@ -18,7 +18,7 @@ import javax.imageio.*;
 
 public class Panel extends JPanel {
 
-    private double state = 1;
+    private double state = 0;
     /*
     0 - loading credits; 1 - start screen; 1.5 - starting animation; 2 - playing; 3 - game over; 4 - victory;
     */
@@ -31,8 +31,8 @@ public class Panel extends JPanel {
     public static int groundHeight = 150;
     private boolean[] keys = new boolean[512];
 
-    private boolean drawOverlay = false, paused = false, caponeSpawned = false;
-    private int caponeSpawnTime, currentTime, startTime, score, delay, dbKey;
+    private boolean drawOverlay = false, paused = false, caponeSpawned = false, dennisonSpawned = false;
+    private int caponeSpawnTime, dennisonSpawnTime, currentTime, startTime, score, delay, dbKey;
     private GUIMod gui;
     private ObjectNotation db, uniqueDB;
 
@@ -41,7 +41,10 @@ public class Panel extends JPanel {
 
     private boolean hit21st = false;
 
-    // Loading Screen Buttons
+    // Loading Screen Button
+    private JButton skip;
+
+    // Menu Screen Buttons
     private JButton play, instructions, legislation;
 
     // Instruction Screen Button
@@ -54,8 +57,7 @@ public class Panel extends JPanel {
         instructions = new JButton("Instructions");
         legislation = new JButton("View Prohibition Legislation");
         toMenu = new JButton("Menu");
-
-        initButtons();
+        skip = new JButton("Skip");
 
         entities = new ArrayList<>();
         entities.add(new Backdrop(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 200, Main.HEIGHT - groundHeight - 600, 75, 200, 400, 600));
@@ -70,6 +72,7 @@ public class Panel extends JPanel {
         p = new Player(Main.WIDTH/2 - 35, 100, 70, 120);
 
         caponeSpawnTime = (int)((Math.random() * 20000) + 20000);
+        dennisonSpawnTime = (int)((Math.random() * 20000) + 20000);
         startTime = (int)(System.nanoTime()/1000000);
 
         spawnTimer = new Timer(delay, new ActionListener() {
@@ -81,7 +84,7 @@ public class Panel extends JPanel {
                     if(currentTime - startTime >= 60000 && Math.random() < .1) {
                         entities.add(new Legislation(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 60, 60, 60, true, db.keys()[db.keys().length - 1]));
                     }else {
-                        entities.add(new Legislation(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 60, 60, 60, false, db.keys()[(int)(Math.random() * (db.keys().length-1))]));
+                        entities.add(new Legislation(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 60, 60, 60, false, db.keys()[dbKey]));
                     }
 
                     if (Math.random() >= .75) {
@@ -94,6 +97,11 @@ public class Panel extends JPanel {
                         caponeSpawned = true;
                     }
 
+                    if(currentTime - startTime >= dennisonSpawnTime && !dennisonSpawned) {
+                        entities.add(new AlCapone(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 120, 70, 120, "Tom Dennison"));
+                        dennisonSpawned = true;
+                    }
+
                 }
             }
         });
@@ -102,7 +110,9 @@ public class Panel extends JPanel {
         gameTimer = new Timer(1000/30, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(state == 1) {
+                if(state == 0) {
+                    addButtons();
+                }else if(state == 1) {
                     p.setPosition(Main.WIDTH/2 - 35, 100);
                     p.animate();
                     addButtons();
@@ -163,23 +173,21 @@ public class Panel extends JPanel {
         });
     }
 
-    public void initButtons() {
-        play.setVerticalTextPosition(AbstractButton.CENTER);
-        play.setHorizontalTextPosition(AbstractButton.CENTER);
-
-
-        instructions.setVerticalTextPosition(AbstractButton.CENTER);
-        instructions.setHorizontalTextPosition(AbstractButton.CENTER);
-
-        legislation.setVerticalTextPosition(AbstractButton.CENTER);
-        legislation.setHorizontalTextPosition(AbstractButton.CENTER);
-
-        toMenu.setVerticalTextPosition(AbstractButton.CENTER);
-        toMenu.setHorizontalTextPosition(AbstractButton.CENTER);
-    }
-
     public void addButtons() {
-        if(state == 1) {
+        if(state == 0) {
+            skip.setBounds(685, 515, 100, 50);
+            skip.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    state = 1;
+                    remove(skip);
+                    revalidate();
+                    repaint();
+                }
+            });
+
+            add(skip);
+        }else if(state == 1) {
             play.setBounds(Main.WIDTH / 2 - 50, 300, 100, 50);
             play.addActionListener(new ActionListener() {
                 @Override
@@ -203,11 +211,10 @@ public class Panel extends JPanel {
             add(play);
             add(instructions);
             add(legislation);
-
-            revalidate();
-            repaint();
         }else if(state == 2 || state == 3) {
+            grabFocus();
             toMenu.setBounds(685, 515, 100, 50);
+
             toMenu.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -219,10 +226,9 @@ public class Panel extends JPanel {
             });
 
             add(toMenu);
-
-            revalidate();
-            repaint();
         }
+        revalidate();
+        repaint();
     }
 
     public void resetGame() {
@@ -330,6 +336,11 @@ public class Panel extends JPanel {
                         def = uniqueDB.get(e.getId());
                     else{
                         def = db.get(e.getId());
+                        if(dbKey + 1 < db.keys().length - 1) {
+                            dbKey++;
+                        }else {
+                            dbKey = 0;
+                        }
                         Legislation l = (Legislation)e;
                         if(l.getIs21st()) {
                             hit21st = true;
