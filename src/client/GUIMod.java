@@ -17,8 +17,9 @@ public class GUIMod {
     private String innerText;
     private Panel parent;
     private JTextPane textbox;
+    private Rectangle rect = null;
 
-    public GUIMod(Panel parent){
+    public GUIMod(Panel parent, Rectangle optionalRect){
         innerText = "megaLUL";
         this.parent = parent;
         textbox = new JTextPane();
@@ -33,18 +34,27 @@ public class GUIMod {
         StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
         doc.setParagraphAttributes(0, doc.getLength(), center, false);
         parent.add(textbox);
+        if(optionalRect != null){
+            rect = optionalRect;
+        }
     }
 
     public void draw(Graphics2D g2){
         try {
             BufferedImage bufferedImage = ImageIO.read(new File("res/blankScroll.png"));
-            BufferedImage scroll = Panel.resizeImage(bufferedImage, parent.getWidth() / 3, parent.getHeight() * 2/3);
-            int[] scrollCoords = {parent.getWidth() - scroll.getWidth() * 9/8, parent.getHeight() / 8};
+            BufferedImage scroll;
+            int[] scrollCoords;
+            if(rect == null) {
+                scroll = Panel.resizeImage(bufferedImage, parent.getWidth() / 3, parent.getHeight() * 2 / 3);
+                scrollCoords = new int[]{parent.getWidth() - scroll.getWidth() * 9 / 8, parent.getHeight() / 8};
+            }
+            else{
+                scroll = Panel.resizeImage(bufferedImage, (int)rect.getWidth(), (int)rect.getHeight());
+                scrollCoords = new int[]{rect.x, rect.y};
+            }
             g2.drawImage(scroll, scrollCoords[0], scrollCoords[1], null);
-            textbox.setBounds(scrollCoords[0] + 10, scrollCoords[1] + 70, scroll.getWidth() - 20, scroll.getHeight() - 100);
+            textbox.setBounds(scrollCoords[0] + 75, scrollCoords[1] + 80, scroll.getWidth() - 150, scroll.getHeight() - 100);
             textbox.setVisible(true);
-
-
         } catch (Exception e) {
             System.out.println("Image not found");
         }
@@ -63,5 +73,7 @@ public class GUIMod {
         textbox.setVisible(false);
     }
 
-
+    public void setRect(Rectangle rect){
+        this.rect = rect;
+    }
 }

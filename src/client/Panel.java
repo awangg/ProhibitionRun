@@ -20,7 +20,7 @@ public class Panel extends JPanel {
 
     private double state = 0;
     /*
-    0 - loading credits; 1 - start screen; 1.5 - starting animation; 2 - playing; 3 - game over; 4 - victory;
+    0 - loading credits; 1 - start screen; 1.5 - starting animation; 2 - playing; 3 - game over; 4 - victory; 5 - info
     */
     boolean gameOver = false;
 
@@ -32,7 +32,7 @@ public class Panel extends JPanel {
     private boolean[] keys = new boolean[512];
 
     private boolean drawOverlay = false, paused = false, caponeSpawned = false, dennisonSpawned = false;
-    private int caponeSpawnTime, dennisonSpawnTime, currentTime, startTime, score, delay, dbKey;
+    private int caponeSpawnTime, dennisonSpawnTime, currentTime, startTime, score, delay, dbKey, menuIdx;
     private GUIMod gui;
     private ObjectNotation db, uniqueDB;
 
@@ -50,20 +50,37 @@ public class Panel extends JPanel {
     // Instruction Screen Button
     private JButton toMenu;
 
+    //Info Screen Buttons
+    private JButton prev, next;
+    private GUIMod infoGUI;
+    private String menuKey;
+
     public Panel() {
         setLayout(null);
 
         play = new JButton("Play!");
         instructions = new JButton("Instructions");
-        legislation = new JButton("View Prohibition Legislation");
+        legislation = new JButton("View Prohibition Info");
         toMenu = new JButton("Menu");
         skip = new JButton("Skip");
+        prev = new JButton("<");
+        next = new JButton(">");
+
+        prev.addActionListener(e ->{
+            loopInfo(-1);
+        });
+
+        next.addActionListener(e -> {
+            loopInfo(1);
+        });
 
         entities = new ArrayList<>();
         entities.add(new Backdrop(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 200, Main.HEIGHT - groundHeight - 600, 75, 200, 400, 600));
         delay = 2000;
 
-        gui = new GUIMod(this);
+        infoGUI = new GUIMod(this, null);
+
+        gui = new GUIMod(this, null);
         dbKey = 0;
         db = new ObjectNotation("db.txt");
         uniqueDB = new ObjectNotation("uniqueInfoDB.txt");
@@ -73,6 +90,9 @@ public class Panel extends JPanel {
 
         caponeSpawnTime = (int)((Math.random() * 20000) + 20000);
         dennisonSpawnTime = (int)((Math.random() * 20000) + 20000);
+        while(dennisonSpawnTime == caponeSpawnTime){
+            dennisonSpawnTime = (int)((Math.random() * 20000) + 20000);
+        }
         startTime = (int)(System.nanoTime()/1000000);
 
         spawnTimer = new Timer(delay, new ActionListener() {
@@ -210,11 +230,18 @@ public class Panel extends JPanel {
             });
 
             legislation.setBounds(Main.WIDTH / 2 - 100, 450, 200, 50);
+            legislation.addActionListener(e -> {
+                resetGame();
+                state = 5;
+                addButtons();
+                infoGUI.setRect(new Rectangle(Main.WIDTH / 10, Main.HEIGHT / 10, Main.WIDTH * 4/5, Main.HEIGHT * 4/5));
+                infoGUI.setText(db.keys()[menuIdx] + "\n\n" + db.get(db.keys()[menuIdx]));
+            });
 
             add(play);
             add(instructions);
             add(legislation);
-        }else if(state == 2 || state == 3) {
+        }else if(state == 2 || state == 3 || state == 5) {
             grabFocus();
             toMenu.setBounds(685, 515, 100, 50);
 
@@ -222,21 +249,44 @@ public class Panel extends JPanel {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     remove(toMenu);
-                    revalidate();
-                    repaint();
+                    resetGame();
                     state = 1;
                 }
             });
 
             add(toMenu);
+
+            if(state==5){
+                prev.setBounds(Main.WIDTH / 10, Main.HEIGHT/ 12, 30, 30);
+                next.setBounds(Main.WIDTH * 9 / 10 - 30, Main.HEIGHT / 12, 30, 30);
+
+                add(prev);
+                add(next);
+            }
         }
         revalidate();
         repaint();
     }
 
+    private void loopInfo(int change){
+        menuIdx += change;
+        int keyMax = db.size() + uniqueDB.size();
+        if(menuIdx < 0){
+            menuIdx = keyMax - 1;
+        }
+        if(menuIdx >= keyMax)
+            menuIdx = 0;
+        if(menuIdx >= db.size()){
+            int temp = menuIdx - db.size();
+            infoGUI.setText(uniqueDB.keys()[temp] + "\n\n" + uniqueDB.get(uniqueDB.keys()[temp]));
+        }
+        else{
+            infoGUI.setText(db.keys()[menuIdx] + "\n\n" + db.get(db.keys()[menuIdx]));
+        }
+    }
+
     public void resetGame() {
         score = 0;
-
         entities.clear();
         entities.add(new Backdrop(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 200, Main.HEIGHT - groundHeight - 600, 75, 200, 400, 600));
         delay = 2000;
@@ -252,9 +302,14 @@ public class Panel extends JPanel {
         gui.hide();
         drawOverlay = false;
 
+        infoGUI.hide();
+
         remove(play);
         remove(instructions);
         remove(legislation);
+        remove(prev);
+        remove(next);
+        grabFocus();
 
         revalidate();
         repaint();
@@ -480,6 +535,10 @@ public class Panel extends JPanel {
         } else if(state == 4) {
             g2.setColor(Color.GREEN);
             g2.fillRect(0, 0, Main.WIDTH, Main.HEIGHT);
+        } else if(state == 5){
+            g2.setColor(Color.BLACK);
+            g2.fillRect(0, 0, Main.WIDTH, Main.HEIGHT);
+            infoGUI.draw(g2);
         }
     }
 
