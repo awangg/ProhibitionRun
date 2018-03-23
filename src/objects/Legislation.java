@@ -58,4 +58,8 @@ public class Legislation extends Entity {
         g2.drawImage(sprite, (int)getPosition().x, (int)getPosition().y, getWidth(), getHeight(), null);
     }
 
+    public boolean getIs21st() {
+        return is21st;
+    }
+
 }

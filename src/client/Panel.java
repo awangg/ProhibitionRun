@@ -18,10 +18,11 @@ import javax.imageio.*;
 
 public class Panel extends JPanel {
 
-    private double state = 2;
+    private double state = 1;
     /*
     0 - loading credits; 1 - start screen; 1.5 - starting animation; 2 - playing; 3 - game over; 4 - victory;
     */
+    boolean gameOver = false;
 
     private Timer gameTimer, spawnTimer;
     private Player p;
@@ -38,6 +39,8 @@ public class Panel extends JPanel {
     private BufferedImage communismLeft, communismRight, studio;
     private int initLeft = 100, initRight = 400, frameSpeed = 2, opacity = 0;
 
+    private boolean hit21st = false;
+
     public Panel() {
         entities = new ArrayList<>();
         entities.add(new Backdrop(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 200, Main.HEIGHT - groundHeight - 600, 75, 200, 400, 600));
@@ -49,7 +52,7 @@ public class Panel extends JPanel {
         uniqueDB = new ObjectNotation("uniqueInfoDB.txt");
         initLoadingImages();
 
-        p = new Player(25, (Main.HEIGHT - groundHeight) - 120, 70, 120);
+        p = new Player(Main.WIDTH/2 - 35, 100, 70, 120);
 
         caponeSpawnTime = (int)((Math.random() * 20000) + 20000);
         startTime = (int)(System.nanoTime()/1000000);
@@ -60,7 +63,7 @@ public class Panel extends JPanel {
 
                 if(state == 2) {
 
-                    if(currentTime - startTime >= 60000 && Math.random() < .10) {
+                    if(currentTime - startTime >= 60000 && Math.random() < .1) {
                         entities.add(new Legislation(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 60, 60, 60, true, db.keys()[db.keys().length - 1]));
                     }else {
                         entities.add(new Legislation(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 60, 60, 60, false, db.keys()[(int)(Math.random() * (db.keys().length-1))]));
@@ -84,7 +87,9 @@ public class Panel extends JPanel {
         gameTimer = new Timer(1000/30, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(state == 2 && !paused) {
+                if(state == 1) {
+                    p.animate();
+                }else if(state == 2 && !paused) {
                     currentTime = (int)(System.nanoTime()/1000000);
                     playerControls();
                     if (!p.isGrounded()) {
@@ -101,8 +106,16 @@ public class Panel extends JPanel {
                         drawOverlay = true;
                         pauseTimers();
                     }
-                }else if(state == 2 && paused) {
+
+                    if(score <= -50) {
+                        gameOver = true;
+                    }
+                }
+                if(state == 2 && paused) {
                     checkResume();
+                }
+                if(state == 2 && gameOver) {
+                    resetGame();
                 }
                 repaint();
             }
@@ -125,6 +138,30 @@ public class Panel extends JPanel {
                 keys[e.getKeyCode()] = false;
             }
         });
+    }
+
+    public void resetGame() {
+        if(keys[KeyEvent.VK_R]) {
+            score = 0;
+
+            entities.clear();
+            entities.add(new Backdrop(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 200, Main.HEIGHT - groundHeight - 600, 75, 200, 400, 600));
+            delay = 2000;
+
+            p = new Player(25, (Main.HEIGHT - groundHeight) - 120, 70, 120);
+
+            caponeSpawnTime = (int) ((Math.random() * 20000) + 20000);
+            startTime = (int) (System.nanoTime() / 1000000);
+
+            spawnTimer.start();
+
+            paused = false;
+            gui.hide();
+            drawOverlay = false;
+
+            gameOver = false;
+            keys[KeyEvent.VK_R] = false;
+        }
     }
 
     public void initLoadingImages() {
@@ -176,10 +213,14 @@ public class Panel extends JPanel {
 
     public void checkResume() {
         if(keys[KeyEvent.VK_SPACE]) {
-            paused = false;
             spawnTimer.start();
             drawOverlay = false;
             gui.hide();
+
+            if (hit21st) {
+                state = 4;
+            }
+            paused = false;
             keys[KeyEvent.VK_SPACE] = false;
         }
     }
@@ -189,28 +230,28 @@ public class Panel extends JPanel {
             Entity e = entities.get(i);
             if(p.isCollidingWith(e) && !(e instanceof Backdrop)) {
                 if (e instanceof Keg) {
-                    score += 50;
+                    score += 20;
                     entities.remove(e);
                     i--;
                     return false;
                 }else {
-                    score -= 10;
+                    score -= 50;
                     String def;
                     if(e.isUniqueInfo())
                         def = uniqueDB.get(e.getId());
                     else{
                         def = db.get(e.getId());
-                        if(dbKey < db.keys().length - 1)
-                            dbKey++;
-//                        else{ could loop back if we want it too
-//                            dbKey = 0;
-//                        }
+                        Legislation l = (Legislation)e;
+                        if(l.getIs21st()) {
+                            hit21st = true;
+                        }
                     }
                     gui.setText(e.getId() + "\n\n" + def);
                     //System.out.println("dbKey is now: " + dbKey + " and db is " + Arrays.toString(db.keys()));
                     entities.remove(e);
                     drawOverlay = true;
                     i--;
+
                     return true;
                 }
             }
@@ -240,27 +281,39 @@ public class Panel extends JPanel {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
+        Font def = g2.getFont();
+
         if(state == 0) {
             g2.drawImage(studio, 0, 0, Main.WIDTH, Main.HEIGHT, null);
             g2.drawImage(communismLeft, initLeft, 0, null);
             g2.drawImage(communismRight, initRight, 0, null);
 
-            if(initLeft > -100) {
+            if (initLeft > -100) {
                 initLeft -= frameSpeed;
             }
-            if(initRight + communismRight.getWidth() < Main.WIDTH + 100) {
+            if (initRight + communismRight.getWidth() < Main.WIDTH + 100) {
                 initRight += frameSpeed;
             }
 
-            if((initLeft <= -100 || initRight >= Main.WIDTH + 100) && opacity < 252) {
+            if ((initLeft <= -100 || initRight >= Main.WIDTH + 100) && opacity < 252) {
                 opacity += 4;
             }
             g2.setColor(new Color(0, 0, 0, opacity));
             g2.fillRect(0, 0, Main.WIDTH, Main.HEIGHT);
 
-            if(opacity >= 252) {
-                state = 2;
+            if (opacity >= 252) {
+                state = 1;
             }
+        } else if(state == 1) {
+            g2.setColor(Color.BLACK);
+            g2.fillRect(0, 0, Main.WIDTH, Main.HEIGHT);
+
+            g2.setFont(new Font("Monospaced", Font.BOLD, 48));
+            g2.setColor(Color.WHITE);
+            g2.drawString("PROHIBITION RUN", Main.WIDTH/2 - g2.getFontMetrics().stringWidth("PROHIBITION RUN")/2, 75);
+
+            p.display(g2);
+
         } else if(state == 2) {
             //Background
             g2.setColor(new Color(0, 0, 102));
@@ -288,6 +341,21 @@ public class Panel extends JPanel {
             if (drawOverlay) {
                 gui.draw(g2);
             }
+
+            if(gameOver) {
+                g2.setColor(new Color(0, 0, 0, 150));
+                g2.fillRect(0, 0, Main.WIDTH, Main.HEIGHT);
+
+                g2.setColor(Color.WHITE);
+                g2.setFont(new Font(def.getName(), def.getStyle(), 36));
+                String death = "GAME OVER";
+                g2.drawString(death, Main.WIDTH/2 - (g2.getFontMetrics().stringWidth(death)/2), Main.HEIGHT/2 - 10);
+
+                pauseTimers();
+            }
+        } else if(state == 4) {
+            g2.setColor(Color.GREEN);
+            g2.fillRect(0, 0, Main.WIDTH, Main.HEIGHT);
         }
     }
 
