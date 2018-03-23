@@ -2,6 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f8117456-1ff5-4742-9f57-9f48aa168346" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ProhibitionRun/client/Panel$1.class" afterPath="$PROJECT_DIR$/out/production/ProhibitionRun/client/Panel$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ProhibitionRun/client/Panel$2.class" afterPath="$PROJECT_DIR$/out/production/ProhibitionRun/client/Panel$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ProhibitionRun/client/Panel$3.class" afterPath="$PROJECT_DIR$/out/production/ProhibitionRun/client/Panel$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ProhibitionRun/client/Panel.class" afterPath="$PROJECT_DIR$/out/production/ProhibitionRun/client/Panel.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/db.txt" afterPath="$PROJECT_DIR$/res/db.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/uniqueInfoDB.txt" afterPath="$PROJECT_DIR$/res/uniqueInfoDB.txt" />
@@ -31,34 +35,48 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="db.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/db.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="32" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="uniqueInfoDB.txt" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/res/uniqueInfoDB.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="33" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Panel.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Panel.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/client/Panel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="100" column="127" selection-start-line="100" selection-start-column="127" selection-end-line="100" selection-end-column="127" />
+            <state relative-caret-position="105">
+              <caret line="120" column="32" selection-start-line="120" selection-start-column="32" selection-end-line="120" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#5550#5551#0" expanded="true" />
+                <element signature="e#5609#5610#0" expanded="true" />
+                <element signature="e#5682#5683#0" expanded="true" />
+                <element signature="e#5742#5743#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/client/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GUIMod.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/client/GUIMod.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="41" column="75" selection-start-line="41" selection-start-column="75" selection-end-line="41" selection-end-column="75" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ObjectNotation.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/tools/ObjectNotation.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-193">
+              <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -66,7 +84,7 @@
       <file leaf-file-name="Entity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/objects/Entity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1125">
+            <state relative-caret-position="1067">
               <caret line="86" column="5" selection-start-line="86" selection-start-column="5" selection-end-line="86" selection-end-column="5" />
               <folding>
                 <element signature="e#2400#2401#0" expanded="true" />
@@ -113,11 +131,11 @@
         <option value="$PROJECT_DIR$/res/player/uniqueInfoDB.txt" />
         <option value="$PROJECT_DIR$/src/objects/AlCapone.java" />
         <option value="$PROJECT_DIR$/src/tools/ObjectNotation.java" />
-        <option value="$PROJECT_DIR$/src/client/GUIMod.java" />
         <option value="$PROJECT_DIR$/src/objects/Player.java" />
         <option value="$PROJECT_DIR$/src/objects/Legislation.java" />
-        <option value="$PROJECT_DIR$/res/db.txt" />
         <option value="$PROJECT_DIR$/res/uniqueInfoDB.txt" />
+        <option value="$PROJECT_DIR$/res/db.txt" />
+        <option value="$PROJECT_DIR$/src/client/GUIMod.java" />
         <option value="$PROJECT_DIR$/src/client/Panel.java" />
       </list>
     </option>
@@ -587,7 +605,14 @@
       <option name="project" value="LOCAL" />
       <updated>1521776517410</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="added more legislation&#10;added dennison">
+      <created>1521812353982</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1521812353982</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -637,7 +662,8 @@
     <MESSAGE value="can no longer move while jumping" />
     <MESSAGE value="Game over screen and restart done&#10;Menu screen started" />
     <MESSAGE value="Pretty much finished loading screen&#10;Need the legislation ready&#10;Instructions pretty much done" />
-    <option name="LAST_COMMIT_MESSAGE" value="Pretty much finished loading screen&#10;Need the legislation ready&#10;Instructions pretty much done" />
+    <MESSAGE value="added more legislation&#10;added dennison" />
+    <option name="LAST_COMMIT_MESSAGE" value="added more legislation&#10;added dennison" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -667,6 +693,10 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5550#5551#0" expanded="true" />
+            <element signature="e#5609#5610#0" expanded="true" />
+            <element signature="e#5682#5683#0" expanded="true" />
+            <element signature="e#5742#5743#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -723,6 +753,10 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5550#5551#0" expanded="true" />
+            <element signature="e#5609#5610#0" expanded="true" />
+            <element signature="e#5682#5683#0" expanded="true" />
+            <element signature="e#5742#5743#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -787,6 +821,10 @@
           <caret line="186" column="65" selection-start-line="186" selection-start-column="65" selection-end-line="186" selection-end-column="65" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5550#5551#0" expanded="true" />
+            <element signature="e#5609#5610#0" expanded="true" />
+            <element signature="e#5682#5683#0" expanded="true" />
+            <element signature="e#5742#5743#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -833,22 +871,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/GUIMod.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-43">
-          <caret line="37" column="36" selection-start-line="37" selection-start-column="36" selection-end-line="37" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/objects/Player.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -873,14 +895,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/tools/ObjectNotation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/objects/AlCapone.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -891,7 +905,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/objects/Entity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1125">
+        <state relative-caret-position="1067">
           <caret line="86" column="5" selection-start-line="86" selection-start-column="5" selection-end-line="86" selection-end-column="5" />
           <folding>
             <element signature="e#2400#2401#0" expanded="true" />
@@ -900,29 +914,57 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/Panel.java">
+    <entry file="file://$PROJECT_DIR$/res/uniqueInfoDB.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="100" column="127" selection-start-line="100" selection-start-column="127" selection-end-line="100" selection-end-column="127" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="0" column="133" selection-start-line="0" selection-start-column="133" selection-end-line="0" selection-end-column="133" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/db.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="32" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="32" />
+        <state relative-caret-position="135">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/uniqueInfoDB.txt">
+    <entry file="file://$PROJECT_DIR$/src/tools/ObjectNotation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="33" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="33" />
+        <state relative-caret-position="-193">
+          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/GUIMod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="41" column="75" selection-start-line="41" selection-start-column="75" selection-end-line="41" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/Panel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="120" column="32" selection-start-line="120" selection-start-column="32" selection-end-line="120" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5550#5551#0" expanded="true" />
+            <element signature="e#5609#5610#0" expanded="true" />
+            <element signature="e#5682#5683#0" expanded="true" />
+            <element signature="e#5742#5743#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

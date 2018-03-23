@@ -118,6 +118,7 @@ public class Panel extends JPanel {
                     addButtons();
 
                 }else if(state == 2 && !paused) {
+                    grabFocus();
                     currentTime = (int)(System.nanoTime()/1000000);
                     addButtons();
                     playerControls();
@@ -188,6 +189,8 @@ public class Panel extends JPanel {
 
             add(skip);
         }else if(state == 1) {
+            remove(skip);
+
             play.setBounds(Main.WIDTH / 2 - 50, 300, 100, 50);
             play.addActionListener(new ActionListener() {
                 @Override
