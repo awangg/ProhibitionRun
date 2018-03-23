@@ -14,7 +14,7 @@ public class ObjectNotation extends HashMap<String, String> {
         buildMap(src);
     }
 
-    static String readFile(String path, Charset encoding)//use Charset.defaultCharset();
+    static String readFile(String path, Charset encoding) //use Charset.defaultCharset();
     {
         try{
             byte[] encoded = Files.readAllBytes(Paths.get(path));

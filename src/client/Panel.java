@@ -18,7 +18,7 @@ import javax.imageio.*;
 
 public class Panel extends JPanel {
 
-    private double state = 0;
+    private double state = 2;
     /*
     0 - loading credits; 1 - start screen; 1.5 - starting animation; 2 - playing; 3 - game over; 4 - victory;
     */
@@ -51,8 +51,7 @@ public class Panel extends JPanel {
 
         p = new Player(25, (Main.HEIGHT - groundHeight) - 120, 70, 120);
 
-//        caponeSpawnTime = (long)(Math.random() * 20000) + 20000;
-        caponeSpawnTime = (int)((Math.random() * 5000) + 1000);
+        caponeSpawnTime = (int)((Math.random() * 20000) + 20000);
         startTime = (int)(System.nanoTime()/1000000);
 
         spawnTimer = new Timer(delay, new ActionListener() {
@@ -60,25 +59,26 @@ public class Panel extends JPanel {
             public void actionPerformed(ActionEvent e) {
 
                 if(state == 2) {
-                //    entities.add(new Legislation(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 60, 60, 60));
 
-                entities.add(new Legislation(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 60, 60, 60, db.keys()[dbKey]));
-
+                    if(currentTime - startTime >= 60000 && Math.random() < .10) {
+                        entities.add(new Legislation(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 60, 60, 60, true, db.keys()[db.keys().length - 1]));
+                    }else {
+                        entities.add(new Legislation(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 60, 60, 60, false, db.keys()[(int)(Math.random() * (db.keys().length-1))]));
+                    }
 
                     if (Math.random() >= .25) {
                         entities.add(new Keg(Main.WIDTH + 50, Main.HEIGHT - groundHeight - 55, 60, 52));
                     }
 
 
-                if(currentTime - startTime >= caponeSpawnTime && !caponeSpawned) {
-                    entities.add(new AlCapone(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 120, 70, 120, "Al Capone"));
-                    caponeSpawned = true;
+                    if(currentTime - startTime >= caponeSpawnTime && !caponeSpawned) {
+                        entities.add(new AlCapone(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 120, 70, 120, "Al Capone"));
+                        caponeSpawned = true;
+                    }
 
                 }
-
-//                System.out.println(spawnTimer.getDelay());
             }
-        }});
+        });
         spawnTimer.start();
 
         gameTimer = new Timer(1000/30, new ActionListener() {
@@ -138,16 +138,16 @@ public class Panel extends JPanel {
     }
 
     public void playerControls() {
-        if(keys[KeyEvent.VK_W] || keys[KeyEvent.VK_UP]) {
+        if(keys[KeyEvent.VK_W] && p.isGrounded()) {
             p.move("jump");
         }
-        if(keys[KeyEvent.VK_D]) {
+        if(keys[KeyEvent.VK_D] && p.isGrounded()) {
             p.move("forward");
             if(p.getPosition().x + p.getWidth() >= Main.WIDTH) {
                 p.setPosition(Main.WIDTH - p.getWidth(), p.getPosition().y);
             }
         }
-        if(keys[KeyEvent.VK_A]) {
+        if(keys[KeyEvent.VK_A] && p.isGrounded()) {
             p.move("backward");
             if(p.getPosition().x <= 0) {
                 p.setPosition(0, p.getPosition().y);

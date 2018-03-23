@@ -10,16 +10,21 @@ import java.io.*;
 public class Legislation extends Entity {
 
     private double speed, initialJumpSpeed, vy = 0;
-    private boolean grounded;
+    private boolean grounded, is21st;
     private BufferedImage sprite;
 
-    public Legislation(int x, int y, int w, int h, String id) {
+    public Legislation(int x, int y, int w, int h, boolean is21st, String id) {
         super(x, y, w, h, id);
         speed = (int)(Math.random() * 10) + 10;
         initialJumpSpeed = (int)(Math.random() * 15) + 8;
         grounded = false;
+        this.is21st = is21st;
         try {
-            sprite = ImageIO.read(new File("res/legislation.png"));
+            if(!is21st) {
+                sprite = ImageIO.read(new File("res/legislation.png"));
+            } else {
+                sprite = ImageIO.read(new File("res/21st.png"));
+            }
         } catch (Exception e) {
             System.out.println("Image not found");
         }

@@ -17,6 +17,7 @@ public class GUIMod {
     private String innerText;
     private Panel parent;
     private JTextPane textbox;
+
     public GUIMod(Panel parent){
         innerText = "megaLUL";
         this.parent = parent;
