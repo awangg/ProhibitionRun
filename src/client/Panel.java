@@ -1,6 +1,7 @@
 package client;
 
 import objects.*;
+import tools.ObjectNotation;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,7 +9,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Panel extends JPanel {
 
@@ -25,13 +28,19 @@ public class Panel extends JPanel {
     private boolean[] keys = new boolean[512];
 
     private boolean drawOverlay = false, paused = false, caponeSpawned = false;
-    private int caponeSpawnTime, currentTime, startTime, score, delay;
+    private int caponeSpawnTime, currentTime, startTime, score, delay, dbKey;
+    private GUIMod gui;
+    private ObjectNotation db, uniqueDB;
 
     public Panel() {
         entities = new ArrayList<>();
         entities.add(new Backdrop(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 200, Main.HEIGHT - groundHeight - 600, 75, 200, 400, 600));
         delay = 2000;
 
+        gui = new GUIMod(this);
+        dbKey = 0;
+        db = new ObjectNotation("db.txt");
+        uniqueDB = new ObjectNotation("uniqueInfoDB.txt");
         p = new Player(25, (Main.HEIGHT - groundHeight) - 120, 70, 120);
 
 //        caponeSpawnTime = (long)(Math.random() * 20000) + 20000;
@@ -41,22 +50,27 @@ public class Panel extends JPanel {
         spawnTimer = new Timer(delay, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 if(state == 2) {
-                    entities.add(new Legislation(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 60, 60, 60));
+                //    entities.add(new Legislation(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 60, 60, 60));
+
+                entities.add(new Legislation(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 60, 60, 60, db.keys()[dbKey]));
+
 
                     if (Math.random() >= .25) {
                         entities.add(new Keg(Main.WIDTH + 50, Main.HEIGHT - groundHeight - 55, 60, 52));
                     }
 
-                    if (currentTime - startTime >= caponeSpawnTime && !caponeSpawned) {
-                        entities.add(new AlCapone(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 120, 70, 120));
-                        caponeSpawned = true;
-                    }
+
+                if(currentTime - startTime >= caponeSpawnTime && !caponeSpawned) {
+                    entities.add(new AlCapone(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 120, 70, 120, "Al Capone"));
+                    caponeSpawned = true;
+
                 }
 
 //                System.out.println(spawnTimer.getDelay());
             }
-        });
+        }});
         spawnTimer.start();
 
         gameTimer = new Timer(1000/30, new ActionListener() {
@@ -146,6 +160,8 @@ public class Panel extends JPanel {
         if(keys[KeyEvent.VK_SPACE]) {
             paused = false;
             spawnTimer.start();
+            drawOverlay = false;
+            gui.hide();
             keys[KeyEvent.VK_SPACE] = false;
         }
     }
@@ -161,7 +177,21 @@ public class Panel extends JPanel {
                     return false;
                 }else {
                     score -= 10;
+                    String def;
+                    if(e.isUniqueInfo())
+                        def = uniqueDB.get(e.getId());
+                    else{
+                        def = db.get(e.getId());
+                        if(dbKey < db.keys().length - 1)
+                            dbKey++;
+//                        else{ could loop back if we want it too
+//                            dbKey = 0;
+//                        }
+                    }
+                    gui.setText(e.getId() + "\n\n" + def);
+                    //System.out.println("dbKey is now: " + dbKey + " and db is " + Arrays.toString(db.keys()));
                     entities.remove(e);
+                    drawOverlay = true;
                     i--;
                     return true;
                 }
@@ -192,7 +222,7 @@ public class Panel extends JPanel {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        if(state == 2) {
+        if (state == 2) {
             //Background
             g2.setColor(new Color(0, 0, 102));
             g2.fillRect(0, 0, Main.WIDTH, Main.HEIGHT);
@@ -215,6 +245,21 @@ public class Panel extends JPanel {
 
             // Player
             p.display(g2);
+
+            if (drawOverlay) {
+                gui.draw(g2);
+            }
         }
+    }
+
+    public static BufferedImage resizeImage(BufferedImage img, int newW, int newH) {
+        Image tmp = img.getScaledInstance(newW, newH, Image.SCALE_SMOOTH);
+        BufferedImage dimg = new BufferedImage(newW, newH, BufferedImage.TYPE_INT_ARGB);
+
+        Graphics2D g2d = dimg.createGraphics();
+        g2d.drawImage(tmp, 0, 0, null);
+        g2d.dispose();
+
+        return dimg;
     }
 }

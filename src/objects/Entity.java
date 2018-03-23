@@ -6,11 +6,14 @@ import tools.Point;
 public class Entity {
     private double x, y;
     private int w, h;
-    public Entity(double x, double y, int w, int h) {
+    private String id;
+    private boolean uniqueInfo;
+    public Entity(double x, double y, int w, int h, String id) {
         this.x = x;
         this.y = y;
         this.w = w;
         this.h = h;
+        this.id = id;
     }
 
     // Default move constructor; overridden by subclasses
@@ -71,5 +74,21 @@ public class Entity {
     public void display(Graphics2D g2) {
         g2.setColor(Color.RED);
         g2.fillRect((int)x, (int)y, w, h);
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public boolean isUniqueInfo() {
+        return uniqueInfo;
+    }
+
+    public void setUniqueInfo(boolean uniqueInfo) {
+        this.uniqueInfo = uniqueInfo;
     }
 }

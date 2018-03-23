@@ -13,8 +13,8 @@ public class Legislation extends Entity {
     private boolean grounded;
     private BufferedImage sprite;
 
-    public Legislation(int x, int y, int w, int h) {
-        super(x, y, w, h);
+    public Legislation(int x, int y, int w, int h, String id) {
+        super(x, y, w, h, id);
         speed = (int)(Math.random() * 10) + 10;
         initialJumpSpeed = (int)(Math.random() * 15) + 8;
         grounded = false;

@@ -15,7 +15,7 @@ public class Backdrop extends Entity {
     private double y2;
 
     public Backdrop(double x, double y, double y2, int w, int h, int w2, int h2) {
-        super(x, y, w, h);
+        super(x, y, w, h, null);
 
         try {
             streetlight = ImageIO.read(new File("res/streetlight.png"));

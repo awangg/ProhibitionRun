@@ -19,7 +19,7 @@ public class Player extends Entity {
     private Animation animate;
 
     public Player(double x, double y, int w, int h) {
-        super(x, y, w, h);
+        super(x, y, w, h, null);
 
         animationStates = new BufferedImage[11];
         for(int i = 1; i <= 11; i++) {

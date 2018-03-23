@@ -11,7 +11,7 @@ public class Keg extends Entity {
     private BufferedImage sprite;
 
     public Keg(double x, double y, int w, int h) {
-        super(x, y, w, h);
+        super(x, y, w, h, null);
         speed = 15;
         try {
             sprite = ImageIO.read(new File("res/keg.png"));

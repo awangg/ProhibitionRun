@@ -13,8 +13,9 @@ public class AlCapone extends Entity {
     private BufferedImage[] animationStates;
     private Animation animate;
 
-    public AlCapone(double x, double y, int w, int h) {
-        super(x, y, w, h);
+    public AlCapone(double x, double y, int w, int h, String id) {
+        super(x, y, w, h, id);
+        setUniqueInfo(true);
         speed = (Math.random() * 8) + 2;
         animationStates = new BufferedImage[6];
         for(int i = 1; i <= 6; i++) {
