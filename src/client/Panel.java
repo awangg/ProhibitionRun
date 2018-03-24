@@ -18,7 +18,7 @@ import javax.imageio.*;
 
 public class Panel extends JPanel {
 
-    private double state = 1;
+    private double state = 0;
     /*
     0 - loading credits; 1 - start screen; 1.5 - starting animation; 2 - playing; 3 - game over; 4 - victory; 5 - info
     */
@@ -190,7 +190,7 @@ public class Panel extends JPanel {
                         pauseTimers();
                     }
 
-                    if(score <= -50) {
+                    if(score <= -100) {
                         gameOver = true;
                     }
                 }
@@ -201,7 +201,7 @@ public class Panel extends JPanel {
                     resetGame();
                 }
 
-                if(state == 3) {
+                if(state == 3 || state == 4) {
                     addButtons();
                 }
                 repaint();
@@ -255,7 +255,7 @@ public class Panel extends JPanel {
             add(play);
             add(instructions);
             add(legislation);
-        }else if(state == 2 || state == 3 || state == 5) {
+        }else if(state == 2 || state == 3 || state == 4 || state == 5) {
             grabFocus();
            // setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
             toMenu.setBounds(685, 515, 100, 50);
@@ -544,6 +544,14 @@ public class Panel extends JPanel {
         } else if(state == 4) {
             g2.setColor(Color.GREEN);
             g2.fillRect(0, 0, Main.WIDTH, Main.HEIGHT);
+
+            g2.setColor(Color.BLACK);
+            g2.setFont(new Font("SanSerif", Font.PLAIN, 18));
+            String victory = "Congratulations! You survived to the legalization of alcohol.";
+            String celebrate = "You celebrate your successful business with a now-legal drink";
+            g2.drawString(victory, Main.WIDTH/2 - g2.getFontMetrics().stringWidth(victory)/2, Main.HEIGHT/2 - 25);
+            g2.drawString(celebrate, Main.WIDTH/2 - g2.getFontMetrics().stringWidth(celebrate)/2, Main.HEIGHT/2 + 25);
+            g2.drawString("Total Revenue: $" + score, Main.WIDTH/2 - g2.getFontMetrics().stringWidth("Total Revenue: $" + score)/2, Main.HEIGHT/2 + 50);
         } else if(state == 5){
             g2.setColor(Color.BLACK);
             g2.fillRect(0, 0, Main.WIDTH, Main.HEIGHT);
