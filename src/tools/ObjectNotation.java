@@ -1,6 +1,10 @@
 package tools;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -17,8 +21,15 @@ public class ObjectNotation extends HashMap<String, String> {
     static String readFile(String path, Charset encoding) //use Charset.defaultCharset();
     {
         try{
-            byte[] encoded = Files.readAllBytes(Paths.get(path));
-            return new String(encoded, encoding);
+            ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+            InputStream in = classLoader.getResourceAsStream(path);
+            BufferedReader b = new BufferedReader(new InputStreamReader(in));
+            String l, val = "";
+            while((l = b.readLine()) != null){
+                val += l + "\n";
+            }
+            //byte[] encoded = Files.readAllBytes(Paths.get(path));
+            return val;
         }
         catch(IOException e){
             System.out.println("File not found");

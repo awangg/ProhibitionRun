@@ -18,8 +18,8 @@ public class Backdrop extends Entity {
         super(x, y, w, h, null);
 
         try {
-            streetlight = ImageIO.read(new File("res/streetlight.png"));
-            building = ImageIO.read(new File("res/building.png"));
+            streetlight = ImageIO.read(Main.buildImageFile("res/streetlight.png"));
+            building = ImageIO.read(Main.buildImageFile("res/building.png"));
         } catch (Exception e) {
             System.out.println("Image not found");
         }

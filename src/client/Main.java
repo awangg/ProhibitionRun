@@ -3,6 +3,7 @@ package client;
 import tools.ObjectNotation;
 
 import javax.swing.*;
+import java.net.URL;
 
 public class Main {
 
@@ -24,6 +25,10 @@ public class Main {
         frame.setVisible(true);
         frame.setResizable(true);
 
+    }
 
+    public static URL buildImageFile(String file){
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        return classLoader.getResource(file);
     }
 }

@@ -1,5 +1,7 @@
 package objects;
 
+import client.Main;
+
 import java.io.*;
 import java.awt.*;
 import javax.imageio.*;
@@ -14,7 +16,7 @@ public class Keg extends Entity {
         super(x, y, w, h, null);
         speed = 15;
         try {
-            sprite = ImageIO.read(new File("res/keg.png"));
+            sprite = ImageIO.read(Main.buildImageFile("res/keg.png"));
         } catch (Exception e) {
             System.out.println("Sprite not found");
         }

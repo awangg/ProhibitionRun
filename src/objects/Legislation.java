@@ -21,9 +21,9 @@ public class Legislation extends Entity {
         this.is21st = is21st;
         try {
             if(!is21st) {
-                sprite = ImageIO.read(new File("res/legislation.png"));
+                sprite = ImageIO.read(Main.buildImageFile("res/legislation.png"));
             } else {
-                sprite = ImageIO.read(new File("res/21st.png"));
+                sprite = ImageIO.read(Main.buildImageFile("res/21st.png"));
             }
         } catch (Exception e) {
             System.out.println("Image not found");

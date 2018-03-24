@@ -24,7 +24,7 @@ public class Player extends Entity {
         animationStates = new BufferedImage[11];
         for(int i = 1; i <= 11; i++) {
             try {
-                animationStates[i-1] = ImageIO.read(new File("res/player/player" + i + ".png"));
+                animationStates[i-1] = ImageIO.read(Main.buildImageFile("res/player/player" + i + ".png"));
             } catch (Exception e) {
                 System.out.println("Sprite not found");
             }

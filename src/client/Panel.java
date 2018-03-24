@@ -18,7 +18,7 @@ import javax.imageio.*;
 
 public class Panel extends JPanel {
 
-    private double state = 0;
+    private double state = 1;
     /*
     0 - loading credits; 1 - start screen; 1.5 - starting animation; 2 - playing; 3 - game over; 4 - victory; 5 - info
     */
@@ -66,12 +66,45 @@ public class Panel extends JPanel {
         prev = new JButton("<");
         next = new JButton(">");
 
+        play.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                resetGame();
+                state = 2;
+            }
+        });
+
+        instructions.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                resetGame();
+                state = 3;
+            }
+        });
+
+        legislation.addActionListener(e -> {
+            resetGame();
+            state = 5;
+            addButtons();
+            infoGUI.setRect(new Rectangle(Main.WIDTH / 10, Main.HEIGHT / 10, Main.WIDTH * 4/5, Main.HEIGHT * 4/5));
+            infoGUI.setText(db.keys()[menuIdx] + "\n\n" + db.get(db.keys()[menuIdx]));
+        });
+
         prev.addActionListener(e ->{
             loopInfo(-1);
         });
 
         next.addActionListener(e -> {
             loopInfo(1);
+        });
+
+        toMenu.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                remove(toMenu);
+                resetGame();
+                state = 1;
+            }
         });
 
         entities = new ArrayList<>();
@@ -212,47 +245,21 @@ public class Panel extends JPanel {
             remove(skip);
 
             play.setBounds(Main.WIDTH / 2 - 50, 300, 100, 50);
-            play.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    resetGame();
-                    state = 2;
-                }
-            });
 
             instructions.setBounds(Main.WIDTH / 2 - 50, 375, 100, 50);
-            instructions.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    resetGame();
-                    state = 3;
-                }
-            });
+
 
             legislation.setBounds(Main.WIDTH / 2 - 100, 450, 200, 50);
-            legislation.addActionListener(e -> {
-                resetGame();
-                state = 5;
-                addButtons();
-                infoGUI.setRect(new Rectangle(Main.WIDTH / 10, Main.HEIGHT / 10, Main.WIDTH * 4/5, Main.HEIGHT * 4/5));
-                infoGUI.setText(db.keys()[menuIdx] + "\n\n" + db.get(db.keys()[menuIdx]));
-            });
+
 
             add(play);
             add(instructions);
             add(legislation);
         }else if(state == 2 || state == 3 || state == 5) {
             grabFocus();
+           // setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
             toMenu.setBounds(685, 515, 100, 50);
 
-            toMenu.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    remove(toMenu);
-                    resetGame();
-                    state = 1;
-                }
-            });
 
             add(toMenu);
 
@@ -286,6 +293,8 @@ public class Panel extends JPanel {
     }
 
     public void resetGame() {
+        setLayout(null);
+
         score = 0;
         entities.clear();
         entities.add(new Backdrop(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 200, Main.HEIGHT - groundHeight - 600, 75, 200, 400, 600));
@@ -319,9 +328,9 @@ public class Panel extends JPanel {
 
     public void initLoadingImages() {
         try {
-            communismLeft = ImageIO.read(new File("res/communismLeft.png"));
-            communismRight = ImageIO.read(new File("res/communismRight.png"));
-            studio = ImageIO.read(new File("res/studio.png"));
+            communismLeft = ImageIO.read(Main.buildImageFile("res/communismLeft.png"));
+            communismRight = ImageIO.read(Main.buildImageFile("res/communismRight.png"));
+            studio = ImageIO.read(Main.buildImageFile("res/studio.png"));
         } catch (Exception e) {
             System.out.println("Image not found");
         }
