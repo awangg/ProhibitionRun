@@ -7,57 +7,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8117456-1ff5-4742-9f57-9f48aa168346" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/ProhibitionRun_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/res/META-INF/MANIFEST.MF" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/res/21st.png" afterPath="$PROJECT_DIR$/src/res/21st.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/res/blankScroll.png" afterPath="$PROJECT_DIR$/src/res/blankScroll.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/res/building.png" afterPath="$PROJECT_DIR$/src/res/building.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/res/communismLeft.png" afterPath="$PROJECT_DIR$/src/res/communismLeft.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/res/communismRight.png" afterPath="$PROJECT_DIR$/src/res/communismRight.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/res/db.txt" afterPath="$PROJECT_DIR$/src/res/db.txt" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/res/gangster/gangster1.png" afterPath="$PROJECT_DIR$/src/res/gangster/gangster1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/res/gangster/gangster2.png" afterPath="$PROJECT_DIR$/src/res/gangster/gangster2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/res/gangster/gangster3.png" afterPath="$PROJECT_DIR$/src/res/gangster/gangster3.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/res/gangster/gangster4.png" afterPath="$PROJECT_DIR$/src/res/gangster/gangster4.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/res/gangster/gangster5.png" afterPath="$PROJECT_DIR$/src/res/gangster/gangster5.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/res/gangster/gangster6.png" afterPath="$PROJECT_DIR$/src/res/gangster/gangster6.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/res/keg.png" afterPath="$PROJECT_DIR$/src/res/keg.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/res/legislation.png" afterPath="$PROJECT_DIR$/src/res/legislation.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/res/player/player1.png" afterPath="$PROJECT_DIR$/src/res/player/player1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/res/player/player10.png" afterPath="$PROJECT_DIR$/src/res/player/player10.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/res/player/player11.png" afterPath="$PROJECT_DIR$/src/res/player/player11.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/res/player/player2.png" afterPath="$PROJECT_DIR$/src/res/player/player2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/res/player/player3.png" afterPath="$PROJECT_DIR$/src/res/player/player3.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/res/player/player4.png" afterPath="$PROJECT_DIR$/src/res/player/player4.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/res/player/player5.png" afterPath="$PROJECT_DIR$/src/res/player/player5.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/res/player/player6.png" afterPath="$PROJECT_DIR$/src/res/player/player6.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/res/player/player7.png" afterPath="$PROJECT_DIR$/src/res/player/player7.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/res/player/player8.png" afterPath="$PROJECT_DIR$/src/res/player/player8.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/res/player/player9.png" afterPath="$PROJECT_DIR$/src/res/player/player9.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/res/streetlight.png" afterPath="$PROJECT_DIR$/src/res/streetlight.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/res/studio.png" afterPath="$PROJECT_DIR$/src/res/studio.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/res/uniqueInfoDB.txt" afterPath="$PROJECT_DIR$/src/res/uniqueInfoDB.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ProhibitionRun/client/GUIMod.class" afterPath="$PROJECT_DIR$/out/production/ProhibitionRun/client/GUIMod.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ProhibitionRun/client/Panel$1.class" afterPath="$PROJECT_DIR$/out/production/ProhibitionRun/client/Panel$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ProhibitionRun/client/Panel$2.class" afterPath="$PROJECT_DIR$/out/production/ProhibitionRun/client/Panel$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ProhibitionRun/client/Panel$3.class" afterPath="$PROJECT_DIR$/out/production/ProhibitionRun/client/Panel$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ProhibitionRun/client/Panel$4.class" afterPath="$PROJECT_DIR$/out/production/ProhibitionRun/client/Panel$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ProhibitionRun/client/Panel$5.class" afterPath="$PROJECT_DIR$/out/production/ProhibitionRun/client/Panel$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ProhibitionRun/client/Panel$6.class" afterPath="$PROJECT_DIR$/out/production/ProhibitionRun/client/Panel$6.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ProhibitionRun/client/Panel$7.class" afterPath="$PROJECT_DIR$/out/production/ProhibitionRun/client/Panel$7.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ProhibitionRun/client/Panel.class" afterPath="$PROJECT_DIR$/out/production/ProhibitionRun/client/Panel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ProhibitionRun/tools/ObjectNotation.class" afterPath="$PROJECT_DIR$/out/production/ProhibitionRun/tools/ObjectNotation.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/ProhibitionRun_jar/ProhibitionRun.jar" afterPath="$PROJECT_DIR$/out/artifacts/ProhibitionRun_jar/ProhibitionRun.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/client/GUIMod.java" afterPath="$PROJECT_DIR$/src/client/GUIMod.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/client/Main.java" afterPath="$PROJECT_DIR$/src/client/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/client/Panel.java" afterPath="$PROJECT_DIR$/src/client/Panel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/objects/AlCapone.java" afterPath="$PROJECT_DIR$/src/objects/AlCapone.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/objects/Backdrop.java" afterPath="$PROJECT_DIR$/src/objects/Backdrop.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/objects/Keg.java" afterPath="$PROJECT_DIR$/src/objects/Keg.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/objects/Legislation.java" afterPath="$PROJECT_DIR$/src/objects/Legislation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/objects/Player.java" afterPath="$PROJECT_DIR$/src/objects/Player.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tools/ObjectNotation.java" afterPath="$PROJECT_DIR$/src/tools/ObjectNotation.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ProhibitionRun/res/db.txt" afterPath="$PROJECT_DIR$/out/production/ProhibitionRun/res/db.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ProhibitionRun/res/uniqueInfoDB.txt" afterPath="$PROJECT_DIR$/out/production/ProhibitionRun/res/uniqueInfoDB.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/res/db.txt" afterPath="$PROJECT_DIR$/src/res/db.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/res/uniqueInfoDB.txt" afterPath="$PROJECT_DIR$/src/res/uniqueInfoDB.txt" />
     </list>
     <ignored path="ProhibitionRun.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -86,7 +41,7 @@
       <file leaf-file-name="Panel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/client/Panel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
+            <state relative-caret-position="1755">
               <caret line="117" column="0" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -103,29 +58,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/client/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="31" column="45" selection-start-line="31" selection-start-column="45" selection-end-line="31" selection-end-column="45" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="GUIMod.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/client/GUIMod.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
+            <state relative-caret-position="720">
               <caret line="55" column="76" selection-start-line="55" selection-start-column="76" selection-end-line="55" selection-end-column="76" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ObjectNotation.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ObjectNotation.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/tools/ObjectNotation.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="300">
@@ -135,15 +78,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Entity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/objects/Entity.java">
+      <file leaf-file-name="db.txt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/res/db.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="86" column="5" selection-start-line="86" selection-start-column="5" selection-end-line="86" selection-end-column="5" />
-              <folding>
-                <element signature="e#2400#2401#0" expanded="true" />
-                <element signature="e#2433#2434#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="15">
+              <caret line="1" column="24" selection-start-line="1" selection-start-column="24" selection-end-line="1" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="uniqueInfoDB.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/res/uniqueInfoDB.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="133" selection-start-line="0" selection-start-column="133" selection-end-line="0" selection-end-column="133" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -151,7 +101,7 @@
       <file leaf-file-name="AlCapone.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/objects/AlCapone.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
+            <state relative-caret-position="270">
               <caret line="24" column="72" selection-start-line="24" selection-start-column="72" selection-end-line="24" selection-end-column="72" />
               <folding />
             </state>
@@ -244,6 +194,8 @@
         <option value="$PROJECT_DIR$/src/objects/Backdrop.java" />
         <option value="$PROJECT_DIR$/src/client/Panel.java" />
         <option value="$PROJECT_DIR$/src/tools/ObjectNotation.java" />
+        <option value="$PROJECT_DIR$/src/res/uniqueInfoDB.txt" />
+        <option value="$PROJECT_DIR$/src/res/db.txt" />
       </list>
     </option>
   </component>
@@ -278,8 +230,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -327,6 +277,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -422,6 +376,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -763,7 +719,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="873" extended-state="0" />
+    <frame x="0" y="23" width="1440" height="873" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -779,7 +735,6 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24930556" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329602" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -791,6 +746,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298611" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329602" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -843,6 +799,33 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/objects/Legislation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="25" column="58" selection-start-line="25" selection-start-column="58" selection-end-line="25" selection-end-column="58" />
+          <folding>
+            <element signature="e#1723#1724#0" expanded="true" />
+            <element signature="e#1752#1753#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/objects/Keg.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="18" column="54" selection-start-line="18" selection-start-column="54" selection-end-line="18" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/objects/Backdrop.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="21" column="56" selection-start-line="21" selection-start-column="56" selection-end-line="21" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/client/Panel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1198,33 +1181,16 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/res/uniqueInfoDB.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="133" selection-start-line="0" selection-start-column="133" selection-end-line="0" selection-end-column="133" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/res/db.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/res/META-INF/MANIFEST.MF">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/objects/Entity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
+        <state relative-caret-position="1125">
           <caret line="86" column="5" selection-start-line="86" selection-start-column="5" selection-end-line="86" selection-end-column="5" />
           <folding>
             <element signature="e#2400#2401#0" expanded="true" />
@@ -1235,7 +1201,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/client/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
+        <state relative-caret-position="465">
           <caret line="31" column="45" selection-start-line="31" selection-start-column="45" selection-end-line="31" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1253,7 +1219,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/client/GUIMod.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
+        <state relative-caret-position="720">
           <caret line="55" column="76" selection-start-line="55" selection-start-column="76" selection-end-line="55" selection-end-column="76" />
           <folding />
         </state>
@@ -1261,7 +1227,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/objects/AlCapone.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
+        <state relative-caret-position="270">
           <caret line="24" column="72" selection-start-line="24" selection-start-column="72" selection-end-line="24" selection-end-column="72" />
           <folding />
         </state>
@@ -1304,7 +1270,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/client/Panel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
+        <state relative-caret-position="1755">
           <caret line="117" column="0" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1324,6 +1290,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/res/uniqueInfoDB.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="133" selection-start-line="0" selection-start-column="133" selection-end-line="0" selection-end-column="133" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/res/db.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="24" selection-start-line="1" selection-start-column="24" selection-end-line="1" selection-end-column="24" />
           <folding />
         </state>
       </provider>
