@@ -18,7 +18,7 @@ public class ObjectNotation extends HashMap<String, String> {
         buildMap(src);
     }
 
-    static String readFile(String path, Charset encoding) //use Charset.defaultCharset();
+    public static String readFile(String path, Charset encoding) //use Charset.defaultCharset();
     {
         try{
             ClassLoader classLoader = Thread.currentThread().getContextClassLoader();

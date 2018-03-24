@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.awt.image.*;
@@ -55,6 +56,9 @@ public class Panel extends JPanel {
     private GUIMod infoGUI;
     private String menuKey;
 
+    private GUIMod scrawl;
+    private JButton go;
+
     public Panel() {
         setLayout(null);
 
@@ -65,12 +69,18 @@ public class Panel extends JPanel {
         skip = new JButton("Skip");
         prev = new JButton("<");
         next = new JButton(">");
+        go = new JButton("GO!");
+
+        scrawl = new GUIMod(this, null);
+        scrawl.setText(ObjectNotation.readFile("res/overview.txt", Charset.defaultCharset()));
 
         play.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 resetGame();
-                state = 2;
+                state = 6;
+                scrawl.setRect(new Rectangle(Main.WIDTH / 10, Main.HEIGHT/10, Main.WIDTH * 4/5, Main.HEIGHT * 4/5));
+                addButtons();
             }
         });
 
@@ -105,6 +115,11 @@ public class Panel extends JPanel {
                 resetGame();
                 state = 1;
             }
+        });
+
+        go.addActionListener(e -> {
+            resetGame();
+            state = 2;
         });
 
         entities = new ArrayList<>();
@@ -270,6 +285,9 @@ public class Panel extends JPanel {
                 add(prev);
                 add(next);
             }
+        }else if(state == 6){
+            go.setBounds(685, 515, 100, 50);
+            add(go);
         }
         revalidate();
         repaint();
@@ -293,8 +311,9 @@ public class Panel extends JPanel {
     }
 
     public void resetGame() {
-        setLayout(null);
 
+        remove(go);
+        scrawl.hide();
         score = 0;
         entities.clear();
         entities.add(new Backdrop(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 200, Main.HEIGHT - groundHeight - 600, 75, 200, 400, 600));
@@ -556,6 +575,11 @@ public class Panel extends JPanel {
             g2.setColor(Color.BLACK);
             g2.fillRect(0, 0, Main.WIDTH, Main.HEIGHT);
             infoGUI.draw(g2);
+        }else if(state == 6){
+            g2.setColor(Color.BLACK);
+            g2.fillRect(0, 0, Main.WIDTH, Main.HEIGHT);
+
+            scrawl.draw(g2);
         }
     }
 
