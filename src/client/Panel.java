@@ -319,6 +319,8 @@ public class Panel extends JPanel {
         entities.add(new Backdrop(Main.WIDTH + 25, Main.HEIGHT - groundHeight - 200, Main.HEIGHT - groundHeight - 600, 75, 200, 400, 600));
         delay = 2000;
 
+        gameOver = false;
+
         p = new Player(25, (Main.HEIGHT - groundHeight) - 120, 70, 120);
 
         caponeSpawnTime = (int) ((Math.random() * 20000) + 20000);
@@ -551,7 +553,7 @@ public class Panel extends JPanel {
             g2.drawString("INSTRUCTIONS", Main.WIDTH/2 - g2.getFontMetrics().stringWidth("INSTRUCTIONS")/2, 75);
 
             g2.setFont(new Font("SansSerif", Font.PLAIN, 16));
-            g2.drawString("Jump: W  |  Move Left: A  |  Move Right: D", 15, 150);
+            g2.drawString("Jump: W  |  Move Left: A  |  Move Right: D  |  Exit GUI: Space", 15, 150);
 
             g2.drawString("Collect jugs of beer in order to gain bootlegging revenue!", 15, 200);
             g2.drawString("Be careful, don't get hit by Prohibition legislation, they will decrease your revenue", 15, 225);
